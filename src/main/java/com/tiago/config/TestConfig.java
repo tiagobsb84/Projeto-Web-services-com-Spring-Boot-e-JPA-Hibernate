@@ -8,15 +8,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.tiago.entities.Category;
 import com.tiago.entities.Order;
 import com.tiago.entities.User;
 import com.tiago.entities.enums.OrderStatus;
+import com.tiago.repositories.CategoryRepository;
 import com.tiago.repositories.OrderRepository;
 import com.tiago.repositories.UserRepository;
 
 @Configuration
 @Profile("products")
 public class TestConfig implements CommandLineRunner {
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -26,6 +31,12 @@ public class TestConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Category cat1 = new Category(null, "Electronics"); 
+		Category cat2 = new Category(null, "Books"); 
+		Category cat3 = new Category(null, "Computers");
+		
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456"); 
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456"); 
 		
