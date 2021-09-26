@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.tiago.entities.User;
 import com.tiago.repositories.UserRepository;
 
 @Service
+@Profile("products")
 public class UserService {
 
 	@Autowired
