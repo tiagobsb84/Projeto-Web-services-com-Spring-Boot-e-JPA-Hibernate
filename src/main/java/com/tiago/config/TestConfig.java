@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.tiago.entities.Category;
+import com.tiago.entities.OrdemItem;
 import com.tiago.entities.Order;
 import com.tiago.entities.Product;
 import com.tiago.entities.User;
 import com.tiago.entities.enums.OrderStatus;
 import com.tiago.repositories.CategoryRepository;
+import com.tiago.repositories.OrdemItemRepository;
 import com.tiago.repositories.OrderRepository;
 import com.tiago.repositories.ProductsRepository;
 import com.tiago.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private OrdemItemRepository ordemItemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -69,5 +74,12 @@ public class TestConfig implements CommandLineRunner {
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
+		OrdemItem oi1 = new OrdemItem(o1, p1, 2, p1.getPrice()); 
+		OrdemItem oi2 = new OrdemItem(o1, p3, 1, p3.getPrice()); 
+		OrdemItem oi3 = new OrdemItem(o2, p3, 2, p3.getPrice()); 
+		OrdemItem oi4 = new OrdemItem(o3, p5, 2, p5.getPrice()); 
+		
+		ordemItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 	}
 }
