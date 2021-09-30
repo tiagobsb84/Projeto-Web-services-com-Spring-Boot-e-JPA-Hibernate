@@ -90,4 +90,7 @@ public class OrdemItem implements Serializable{
 		return true;
 	}
 	
+	public Double getSubTotal() {
+		return quantity * price;
+	}
 }
