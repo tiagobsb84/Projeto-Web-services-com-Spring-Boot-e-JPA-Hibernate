@@ -25,4 +25,9 @@ public class UserService {
 		Optional<User> obj = userRepository.findById(id);
 		return obj.get();
 	}
+	
+	//Esse metodo e para inserir o usuario.
+	public User insert(User obj) {
+		return userRepository.save(obj);
+	}
 }
