@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tiago.entities.User;
 import com.tiago.repositories.UserRepository;
+import com.tiago.services.exceptions.ResourceNotFoundException;
 
 @Service
 @Profile("products")
@@ -23,7 +24,7 @@ public class UserService {
 	
 	public User findById(Long id) {
 		Optional<User> obj = userRepository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	//Esse metodo e para inserir o usuario.
